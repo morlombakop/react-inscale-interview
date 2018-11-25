@@ -1,15 +1,19 @@
 ## Quick start
 
-1.  Make sure that you have Node.js v8.10 and npm v5 or above installed.
+1.  Please Make sure that you have Node.js v8.10 and npm v5 or above installed.
 2.  Clone this repo using `git clone https://github.com/morlombakop/react-inscale-interview.git`
 3.  Move to the appropriate directory: `cd react-inscale-interview`.<br />
 4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
     _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
-5.  Run `npm run clean` to delete the example app.
 
-Now you're ready to rumble!
+## Technologies And Framework Used
 
-> Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
+1. React JS -> Javascript framework.
+2. Redux Saga -> Reactive programming.
+3. Redux -> Manage App state.
+4. Material-UI -> Material Design Front-end Framework.
+5. Boiler Plate from `https://github.com/react-boilerplate/react-boilerplate`. -> Kick start the development.
+
 
 ## Documentation
 
