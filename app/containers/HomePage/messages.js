@@ -7,6 +7,4 @@ import { defineMessages } from 'react-intl';
 
 export const scope = 'inscaleInterview.component.HomePage';
 
-export default defineMessages({
-  
-});
+export default defineMessages({});

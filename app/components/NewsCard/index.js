@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import LinesEllipsis from 'react-lines-ellipsis';
 
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -24,10 +25,11 @@ const styles = {
 };
 
 const NewsCard = ({ classes, history, newsObj }) => {
-  const StyledCard = styled(Card)`height: 400px; `;
+  const StyledCard = styled(Card)`
+    height: 400px;
+  `;
   const Description = styled(Typography)`
     height: 70px;
-    overflow: auto;
   `;
   const Title = styled(Typography)`
     text-transform: capitalize;
@@ -35,7 +37,7 @@ const NewsCard = ({ classes, history, newsObj }) => {
 
   // Route to the current article
   const readArticle = () => history.push(`/article/${newsObj.id}`);
-  
+
   return (
     <StyledCard>
       <CardActionArea>
@@ -52,7 +54,13 @@ const NewsCard = ({ classes, history, newsObj }) => {
             {newsObj.title}
           </Title>
           <Description component="p">
-            {newsObj.description}
+            <LinesEllipsis
+              text={newsObj.description}
+              maxLine="3"
+              ellipsis="..."
+              trimRight
+              basedOn="letters"
+            />
           </Description>
         </CardContent>
       </CardActionArea>
@@ -75,7 +83,7 @@ const NewsCard = ({ classes, history, newsObj }) => {
       </CardActions>
     </StyledCard>
   );
-}
+};
 
 NewsCard.propTypes = {
   classes: PropTypes.object.isRequired,

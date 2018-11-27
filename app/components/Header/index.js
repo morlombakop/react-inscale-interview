@@ -27,25 +27,23 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
 
-const Header = ({ classes, onDrawerToggle }) => {
-  return (
-    <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="Open drawer"
-          onClick={onDrawerToggle}
-          className={classes.menuButton}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" color="inherit" noWrap>
-          <FormattedMessage {...messages.title} />
-        </Typography>
-      </Toolbar>
-    </AppBar>
-  );
-}
+const Header = ({ classes, onDrawerToggle }) => (
+  <AppBar position="fixed" className={classes.appBar}>
+    <Toolbar>
+      <IconButton
+        color="inherit"
+        aria-label="Open drawer"
+        onClick={onDrawerToggle}
+        className={classes.menuButton}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Typography variant="h6" color="inherit" noWrap>
+        <FormattedMessage {...messages.title} />
+      </Typography>
+    </Toolbar>
+  </AppBar>
+);
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,

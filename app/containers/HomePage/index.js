@@ -13,7 +13,14 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth'
 import {
   ResponsiveContainer,
   ComposedChart,
-  Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+  Line,
+  Area,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from 'recharts';
 import { get } from 'lodash';
 
@@ -55,7 +62,7 @@ class HomePage extends React.Component {
     this.props.getNews();
   }
 
-  getGridListCols(){
+  getGridListCols() {
     if (isWidthUp('xl', this.props.width)) {
       return 4;
     }
@@ -69,48 +76,54 @@ class HomePage extends React.Component {
     }
 
     return 1;
-  };
+  }
 
   render() {
     // Render nothing is no news from api.
-    if(this.props.loading){
+    if (this.props.loading) {
       return null;
     }
     // render error message
-    if(this.props.error){
-      return (<H1>Errors loading news</H1>);
+    if (this.props.error) {
+      return <H1>Errors loading news</H1>;
     }
     return (
       <div>
         <ChartWrapper>
           <ResponsiveContainer>
-            <ComposedChart data={get(this.props.news, 'graphData', [])} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <ComposedChart
+              data={get(this.props.news, 'graphData', [])}
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+            >
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
               <Legend />
               <CartesianGrid stroke="#f5f5f5" />
-              <Area type="monotone" dataKey="share" fill="#8884d8" stroke="#8884d8" />
+              <Area
+                type="monotone"
+                dataKey="share"
+                fill="#8884d8"
+                stroke="#8884d8"
+              />
               <Bar dataKey="view" barSize={20} fill="#413ea0" />
               <Line type="monotone" dataKey="like" stroke="#ff7300" />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartWrapper>
         <GridList spacing={15} cellHeight={400} cols={this.getGridListCols()}>
-          {
-            get(this.props.news, 'articles', []).map(item => (
-              <GridListTile key={item.id} cols={1}>
-                <NewsCardWrapper>
-                  <NewsCard newsObj={item}/>
-                </NewsCardWrapper>
-              </GridListTile>
-            ))
-          }
+          {get(this.props.news, 'articles', []).map(item => (
+            <GridListTile key={item.id} cols={1}>
+              <NewsCardWrapper>
+                <NewsCard newsObj={item} />
+              </NewsCardWrapper>
+            </GridListTile>
+          ))}
         </GridList>
       </div>
     );
   }
-};
+}
 
 HomePage.propTypes = {
   width: PropTypes.string.isRequired,
@@ -120,7 +133,9 @@ HomePage.propTypes = {
   getNews: PropTypes.func,
 };
 
-const mapDispatchToProps = dispatch => ({ getNews: () => dispatch(loadNews()) });
+const mapDispatchToProps = dispatch => ({
+  getNews: () => dispatch(loadNews()),
+});
 
 const mapStateToProps = createStructuredSelector({
   news: makeSelectNews(),

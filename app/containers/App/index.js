@@ -40,7 +40,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
 });
-   
+
 class App extends React.Component {
   state = {
     mobileOpen: false,
@@ -58,12 +58,18 @@ class App extends React.Component {
           titleTemplate="%s - Mbakop Inscale Interview"
           defaultTitle="Mbakop Inscale Interview"
         >
-          <meta name="description" content="Mbakop Inscale Interview application" />
+          <meta
+            name="description"
+            content="Mbakop Inscale Interview application"
+          />
         </Helmet>
         <div className={classes.root}>
           <CssBaseline />
           <Header onDrawerToggle={this.handleDrawerToggle} />
-          <SideNav onDrawerToggle={this.handleDrawerToggle} isOpen={this.state.mobileOpen} />
+          <SideNav
+            onDrawerToggle={this.handleDrawerToggle}
+            isOpen={this.state.mobileOpen}
+          />
 
           <main className={classes.content}>
             <div className={classes.toolbar} />
@@ -83,7 +89,6 @@ class App extends React.Component {
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(App);
