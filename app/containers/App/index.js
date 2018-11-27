@@ -5,13 +5,18 @@
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
-
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import io from 'socket.io-client';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import HomePage from 'containers/HomePage/Loadable';
@@ -45,6 +50,15 @@ class App extends React.Component {
   state = {
     mobileOpen: false,
   };
+
+  componentDidMount() {
+    // connect to server side event
+    const socket = io.connect('http://localhost:3000');
+    // Fired when the server broadcast a new article
+    socket.on('new-article', article =>
+      NotificationManager.success(`New article published : ${article.id}`),
+    );
+  }
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
@@ -82,6 +96,7 @@ class App extends React.Component {
           </main>
         </div>
         <GlobalStyle />
+        <NotificationContainer />
       </AppWrapper>
     );
   }

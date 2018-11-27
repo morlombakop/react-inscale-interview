@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-notifications/lib/notifications.css';
 
 const GlobalStyle = createGlobalStyle`
   html,

@@ -1,6 +1,7 @@
 /* eslint consistent-return:0 import/order:0 */
 
 const express = require('express');
+const socket = require('socket.io');
 const logger = require('./logger');
 
 const argv = require('./argv');
@@ -14,10 +15,17 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+const news = require('./mocks/news');
 // latest news api
-const news = require('./mocks/news')
 app.use('/api/news', (req, res) => {
   res.send(news);
+});
+
+// socket api
+app.use('/io/news', (req, res) => {
+  res.send({ message: 'new article broadcasted' });
+  // broadcast new article creation
+  io.emit('new-article', { id: 'new-article-id' });
 });
 
 // In production we need to pass these values in instead of relying on webpack
@@ -39,7 +47,7 @@ app.get('*.js', (req, res, next) => {
 });
 
 // Start your app.
-app.listen(port, host, async err => {
+const server = app.listen(port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
@@ -56,4 +64,11 @@ app.listen(port, host, async err => {
   } else {
     logger.appStarted(port, prettyHost);
   }
+});
+
+// setting up socket
+const io = socket(server);
+io.on('connection', soc => {
+  console.log('a user connected');
+  soc.on('disconnect', () => console.log('user disconnected'));
 });

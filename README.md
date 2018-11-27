@@ -13,7 +13,7 @@
 3. Redux -> Manage App state.
 4. Material-UI -> Material Design Front-end Framework.
 5. Boiler Plate from `https://github.com/react-boilerplate/react-boilerplate`. -> Kick start the development.
-
+6. Socket.IO for Real time communication.
 
 ## Documentation
 

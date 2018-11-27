@@ -53,7 +53,7 @@ const NewsCard = ({ classes, history, newsObj }) => {
           <Title variant="h5" component="h2">
             {newsObj.title}
           </Title>
-          <Description component="p">
+          <Description component="div">
             <LinesEllipsis
               text={newsObj.description}
               maxLine="3"
